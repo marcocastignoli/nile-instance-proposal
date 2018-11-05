@@ -6,16 +6,16 @@ class InstanceWsProtocol {
     setSocket(socket) {
         this.socket = socket
     }
-    toNode(action, parameters, confirm) {
-        this.socket.emit("instance.to.node", {
+    to(channel, action, parameters, confirm) {
+        this.socket.emit(channel, {
             action: action,
             parameters: parameters
         })
         return confirm()
     }
-    onNode(action) {
+    on(channel, action) {
         return new Promise((resolve, reject) => {
-            this.socket.on("node.to.instance", data => {
+            this.socket.on(channel, data => {
                 if (data.action === action) {
                     resolve(data.parameters)
                 }

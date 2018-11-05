@@ -10,7 +10,7 @@ class Instance {
     async onRegisterNode({ information, hash }) {
         let ws_id_confirm = ws_id
         // register node then send confirmation
-        const { ws_id, confirm } = await this.api.toNodeRegistered(token)
+        const { ws_id, confirm } = await this.api.toNodeRegistered(node.protocol, node)
 
         if (ws_id == ws_id_confirm) {
             if (confirm) {

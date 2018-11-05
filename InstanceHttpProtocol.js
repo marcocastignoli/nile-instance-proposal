@@ -2,15 +2,15 @@ class InstanceHttpProtocol {
     constructor(resource) {
         this.resource = resource
     }
-    async toNode(action, parameters) {
-        return fetch(this.resource + "/instance/to/node", {
+    async to(channel, action, parameters) {
+        return fetch(this.resource + channel, {
             body: {
                 action: action,
                 parameters: parameters
             }
         })
     }
-    onNode(action) {
-        return this.server.on("/node/to/instance?action==" + action)
+    on(channel, action) {
+        return this.server.on("channel==" + channel + "&action==" + action)
     }
 }
